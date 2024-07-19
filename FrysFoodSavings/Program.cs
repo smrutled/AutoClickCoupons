@@ -72,9 +72,17 @@ namespace FrysFoodSavings
             Thread.Sleep(1000);
 
             driver.FindElement(By.Id("next")).Click();
-            Thread.Sleep(10000);
+            // Wait for the elements to be visible and clickable
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             try
             {
+                //Wait for url to change to coupons page
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlContains("https://www.frysfood.com/savings"));
+
+                //Wait until the pop-up is visible
+                wait.Timeout = TimeSpan.FromSeconds(10);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[@aria-label='Close pop-up']")));
+
                 // Find the button by its aria-label and click it
                 IWebElement closeButton = driver.FindElement(By.XPath("//button[@aria-label='Close pop-up']"));
                 closeButton.Click();
@@ -86,19 +94,15 @@ namespace FrysFoodSavings
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred: {ex.Message}");
-                // Handle other exceptions
+                Console.WriteLine("Close pop-up button not found.");
             }
-            // Wait for the elements to be visible and clickable
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
-   
-            // After navigating to the website and before closing the browser
 
-            //check if page is loaded
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(text(), 'Clip')]")));
+           wait.Timeout = TimeSpan.FromSeconds(30);
            bool bQuit = false;
             try
             {
+                //check if page is loaded
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(text(), 'Clip')]")));
                 while (true)
                 {
                     // Assuming "CouponActionButton" and "Clip" text are consistent attributes
