@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="AutoCouponClipper.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AutoCouponClipper"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="5">
+            <TextBlock Text="User Name:" VerticalAlignment="Center"/>
+            <TextBox x:Name="userNameTextBox" Width="200"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="5">
+            <TextBlock Text="Password:" VerticalAlignment="Center"/>
+            <PasswordBox x:Name="passwordBox" Width="200"/>
+        </StackPanel>
+        <Button x:Name="runButton" Content="Run" Click="RunButton_Click" HorizontalAlignment="Center"/>
+    </StackPanel>
+</Window>
